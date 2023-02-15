@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"fr.fms.bank","c":"User","l":"User()","u":"%3Cinit%3E()"}];updateSearchResults();
