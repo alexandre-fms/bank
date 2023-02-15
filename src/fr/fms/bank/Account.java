@@ -1,17 +1,17 @@
 package fr.fms.bank;
 
 public abstract class Account {
-	private int currentAmount;
+	private double currentAmount;
 	private String ID;
 	private String label;
 	
-	public Account(String ID, String label, int currentAmount) {
+	public Account(String ID, String label, double currentAmount) {
 		setCurrentAmount(currentAmount);
 		setID(ID);
 		setLabel(label);	
 	}
 	
-	public int getCurrentAmount() {
+	public double getCurrentAmount() {
 		return currentAmount;
 	}
 	
@@ -23,7 +23,7 @@ public abstract class Account {
 		return label;
 	}
 	
-	public void setCurrentAmount(int currentAmount) {
+	public void setCurrentAmount(double currentAmount) {
 		this.currentAmount = currentAmount;
 	}
 	
@@ -35,7 +35,7 @@ public abstract class Account {
 		this.label = label;
 	}
 	
-	public int displayAvailableAmount() {
+	public double displayAvailableAmount() {
 		return this.currentAmount;
 	}
 	
