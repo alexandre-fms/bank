@@ -14,17 +14,19 @@ public class CurrentAccount extends Account {
 	}
 
 
-	public void setCurrentAmount(int amount) {
-		if (amount == Math.abs(amount))
-			super.setCurrentAmount(super.getCurrentAmount() + amount);
-		else {
-			if ((super.getCurrentAmount() - amount) > -Math.abs(overdraft))
-				super.setCurrentAmount(super.getCurrentAmount() - amount);
-			else System.out.println("Vous n'avez pas assez d'argent sur votre compte");
-		}
+	public void setCurrentAmount(double amount) {
+		super.setCurrentAmount(amount);
+	}
+	
+	
+	public void removeMoney(double amount) {
+		if ((super.getCurrentAmount() - amount) > -overdraft) {
+			super.setCurrentAmount(super.getCurrentAmount() - amount);
+		} 
+		else System.out.println("vous avez dépassé vos capacités de retrait !");
 	}
 
-
+	
 	@Override
 	public String toString() {
 		return "Current Account " + super.toString() + "overdraft=" + overdraft;

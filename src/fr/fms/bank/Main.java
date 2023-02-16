@@ -1,14 +1,46 @@
 package fr.fms.bank;
 
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-	//	Customer customer1 = new Customer ();
+		AccountJobsImpl job = new AccountJobsImpl();
+		
+		Customer customer1 = new Customer("johndavid@gmail.com", "David", "John");
 
-		Account savAcc1 = new SavingAccount(5.5, null);
+		Account savAcc1 = new SavingAccount(5.5, customer1);
+		
+		Account curAcc1 = new CurrentAccount(500, customer1);
+		
+		
+		
+		job.deposit(500, savAcc1);
+		
+		System.out.println(savAcc1);
+		
+		job.transfer(250, savAcc1, curAcc1);
+		
+		System.out.println(savAcc1);
+		System.out.println(curAcc1);
+		
+		job.transfer(250, savAcc1, savAcc1);
+		
+		System.out.println(job.displayAllBankAccounts());
+		
+	//	System.out.println(job.displayTotalBalance(customer1));
+		//
+//		System.out.println(curAcc1);
+//		job.withdraw(450, curAcc1);
+//		System.out.println(curAcc1);
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
