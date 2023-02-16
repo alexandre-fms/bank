@@ -1,10 +1,12 @@
 package fr.fms.bank;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Account {
 	private static int counter=0;
 	private double currentAmount;
+	private ArrayList<Operation> listOperations;
 	private int ID;
 	private Date date;
 	private Customer customer;
@@ -17,6 +19,18 @@ public abstract class Account {
 		setCurrentAmount(0);
 		this.date = new Date();
 		setCustomer(customer);
+	}
+
+	public ArrayList<Operation> getListOperations() {
+		return listOperations;
+	}
+
+	public void setListOperations(ArrayList<Operation> listOperations) {
+		this.listOperations = listOperations;
+	}
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	private void setCustomer(Customer customer2) {

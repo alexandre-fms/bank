@@ -1,12 +1,13 @@
 package fr.fms.bank;
 
+import java.util.ArrayList;
+
 public class Customer {
 	private static int counter=0;
 	private int id;
-	private Account[] accounts;
+	private ArrayList<Account> listAccounts;
 	private String lastName;
 	private String firstName;
-	private String adress;
 	private String email;
 	
 	/**
@@ -27,6 +28,14 @@ public class Customer {
 		setLastName(lastName);
 		setFirstName(firstName);
 	
+	}
+
+	public ArrayList<Account> getListAccounts() {
+		return listAccounts;
+	}
+
+	public void setListAccounts(ArrayList<Account> listAccounts) {
+		this.listAccounts = listAccounts;
 	}
 
 	public int getId() {

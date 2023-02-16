@@ -1,16 +1,15 @@
 package fr.fms.bank;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public interface AccountJobs {
-	
-	public void transfer(double amount, Account accountFrom, Account accountTo);
-	public String consult(Account account);
-	public void deposit(double amount, Account account);
-	
-	public void withdraw(double amount, Account account);
-	
-	public double displayTotalBalance(Customer customer);
-	
-	public String displayAllBankAccounts();
+
+	public Account consult(int id);
+	public void deposit(double amount, int accountId);
+	public ArrayList<Account> listAccounts();
+	public ArrayList<Operation> listOperations(int accountId);
+	public void transfer(double amount, int accountFromId, int accountToId);
+	public void withdraw(double amount, int accountId);
+
 }
