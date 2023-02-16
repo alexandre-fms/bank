@@ -1,10 +1,16 @@
 package fr.fms.bank;
 
 public class CurrentAccount extends Account {
-	double decouvertAmount;
+	double overdraft;
 
-	public CurrentAccount(String ID, String label, int amount) {
-		super(ID, label, amount);
+	public CurrentAccount(double overdraft, Customer customer) {
+		super(customer);
+		setOverdraft(overdraft);
+	}
+
+
+	private void setOverdraft(double amount) {
+		this.overdraft = amount;
 	}
 
 
@@ -12,7 +18,7 @@ public class CurrentAccount extends Account {
 		if (amount == Math.abs(amount))
 			super.setCurrentAmount(super.getCurrentAmount() + amount);
 		else {
-			if ((super.getCurrentAmount() - amount) > -Math.abs(decouvertAmount))
+			if ((super.getCurrentAmount() - amount) > -Math.abs(overdraft))
 				super.setCurrentAmount(super.getCurrentAmount() - amount);
 			else System.out.println("Vous n'avez pas assez d'argent sur votre compte");
 		}
@@ -21,6 +27,6 @@ public class CurrentAccount extends Account {
 
 	@Override
 	public String toString() {
-		return "Détails du compte courant: [ID=" + super.getID() + ", label=" + super.getLabel() + ", currentAmount=" + super.getCurrentAmount() + "]";
+		return "Current Account " + super.toString() + "overdraft=" + overdraft;
 	}
 }

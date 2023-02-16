@@ -3,11 +3,18 @@ package fr.fms.bank;
 public class SavingAccount extends Account {
 	double interestRate;
 	
-	public SavingAccount(String ID, String label, int amount) {
-		super(ID, label, amount);
+	public SavingAccount(double interestRate, Customer customer) {
+		super(customer);
+		setInterestRate(interestRate);
 	}
 	
 	
+	private void setInterestRate(double interestRate2) {
+		this.interestRate = interestRate2;
+		
+	}
+
+
 	public void setCurrentAmount(int amount) {
 		if (amount == Math.abs(amount))
 			super.setCurrentAmount(super.getCurrentAmount() + amount);
@@ -25,6 +32,6 @@ public class SavingAccount extends Account {
 	
 	@Override
 	public String toString() {
-		return "Détails du compte épargne: [ID=" + super.getID() + ", label=" + super.getLabel() + ", currentAmount=" + super.getCurrentAmount() + "]";
+		return "Saving Account:" + super.toString() + ", rate="+interestRate;
 	}
 }

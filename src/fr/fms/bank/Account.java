@@ -1,39 +1,45 @@
 package fr.fms.bank;
 
+import java.util.Date;
+
 public abstract class Account {
+	private static int counter=0;
 	private double currentAmount;
-	private String ID;
-	private String label;
+	private int ID;
+	private Date date;
+	private Customer customer;
+//	private String label;
 	
-	public Account(String ID, String label, double currentAmount) {
-		setCurrentAmount(currentAmount);
-		setID(ID);
-		setLabel(label);	
+	
+	public Account(Customer customer) {
+		counter++;
+		setID(counter);
+		setCurrentAmount(0);
+		this.date = new Date();
+		setCustomer(customer);
 	}
 	
+	private void setCustomer(Customer customer2) {
+	this.customer = customer2;
+	
+}
+
 	public double getCurrentAmount() {
 		return currentAmount;
 	}
 	
-	public String getID() {
+	public int getID() {
 		return ID;
-	}
-	
-	public String getLabel() {
-		return label;
 	}
 	
 	public void setCurrentAmount(double currentAmount) {
 		this.currentAmount = currentAmount;
 	}
 	
-	public void setID(String ID) {
+	public void setID(int ID) {
 		this.ID = ID;
 	}
-	
-	public void setLabel(String label) {
-		this.label = label;
-	}
+
 	
 	public double displayAvailableAmount() {
 		return this.currentAmount;
@@ -41,7 +47,7 @@ public abstract class Account {
 	
 	@Override
 	public String toString() {
-		return "Account [ID=" + ID + ", label=" + label + ", currentAmount=" + currentAmount + "]";
+		return "[ID=" + ID + ", creation date=" + date + ", balance" + currentAmount + "]";
 	}
 	
 	

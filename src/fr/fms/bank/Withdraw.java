@@ -3,13 +3,14 @@ package fr.fms.bank;
 
 
 public class Withdraw extends Operation{
-	public Withdraw(int id, double amount, String date) {
-		super(id,amount, date);
+	
+	public Withdraw(double amount) {
+		super(amount);
 	}
 
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Détail du Retrait " + super.toString();
 	}
 	
 	

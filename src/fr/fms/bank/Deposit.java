@@ -2,12 +2,12 @@ package fr.fms.bank;
 
 
 public class Deposit extends Operation{
-	public Deposit(int id, double amount, String date) {
-		super(id,amount, date);
+	public Deposit(double amount) {
+		super(amount);
 	}
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Détail du dépôt " + super.toString();
 	}
 	
 }
