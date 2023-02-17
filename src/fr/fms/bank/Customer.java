@@ -9,25 +9,28 @@ public class Customer {
 	private String lastName;
 	private String firstName;
 	private String email;
+	private boolean isAdmin;
+	
+// dans le programme, 
+//	if (customer1.getIsAdmin() == true) {
+// lance le prog normal + les options ADMIN
+// } else {
+//	lance juste le prog normal }
 	
 	/**
-	 * Creation du constructeur pour la class customer avec 
-	 * lien a la classe mere User
-	 * @param savingAccountId
-	 * @param currentAccountId
+	 * Creation du constructeur pour la class customer 
 	 * @param id
 	 * @param email
 	 * @param lastName
 	 * @param firstName
-	 * @param adress
 	 */
-	public Customer (String email,String lastName,String firstName){
+	public Customer (String email,String lastName,String firstName, boolean isAdmin){
 		counter++;
 		setId(counter);
 		setEmail(email);
 		setLastName(lastName);
 		setFirstName(firstName);
-	
+		setIsAdmin(isAdmin);
 	}
 
 	public ArrayList<Account> getListAccounts() {
@@ -43,6 +46,10 @@ public class Customer {
 	}
 	private void setId(int id) {
 		this.id = id;
+	}
+	
+	private void setIsAdmin(boolean b) {
+		this.isAdmin = b;
 	}
 	
 	public String getLastName() {
@@ -75,7 +82,4 @@ public class Customer {
 				+ "]";
 	}
 
-	
-	
-	
-	}
+}

@@ -14,6 +14,14 @@ public class AccountJobsImpl implements AccountJobs {
 	public AccountJobsImpl() {
 		accounts = new HashMap<Integer,Account>();		
 		customers = new HashMap<Integer,Customer>();
+		Customer customer = new Customer("first@admin.com", "First", "Admin", true);
+		customers.put(customer.getId(), customer);
+	}
+	
+	
+	public void addCustomer(String email,String lastName,String firstName, boolean isAdmin) {
+		Customer customer = new Customer(email, lastName, firstName, isAdmin); 	
+		customers.put(customer.getId(), customer);
 	}
 
 	public void addAccount(Account account) {
