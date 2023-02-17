@@ -1,5 +1,6 @@
 package fr.fms.bank;
 import java.util.Scanner;
+//TODO
 /**
  * Programme d'une application bancaire, appelée CodeQuantumBank, permettant de gérer des comptes en ligne. Celle-ci gère 2 types d'utilisateurs : 
  * - un connecté qui peut réaliser des opérations de consultations sur son compte, de retrait, de versement ou de virement.
@@ -17,6 +18,7 @@ public class Main {
 	}
 /**Méthode proposant le menu principal de l'application. */
 	public static void appCodeQuantumBank() {
+		AccountJobsImpl job = new AccountJobsImpl();
 		int choice = 0;		
 		System.out.println("Bienvenue dans l'application de la banque CodeQuantum");
 		System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :\n");
@@ -63,7 +65,7 @@ public class Main {
 			while(!scan.hasNextInt())	scan.next();
 			choice = scan.nextInt();			
 			switch(choice) {
-				case 1 : //consulter
+				case 1 : 
 						 break;
 				
 				case 2 : //transfert d'argent
