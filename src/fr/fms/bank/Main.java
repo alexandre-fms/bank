@@ -1,140 +1,109 @@
 package fr.fms.bank;
-
-// import java.util.Scanner;
-
+import java.util.Scanner;
+/**
+ * Programme d'une application bancaire, appelée CodeQuantumBank, permettant de gérer des comptes en ligne. Celle-ci gère 2 types d'utilisateurs : 
+ * - un connecté qui peut réaliser des opérations de consultations sur son compte, de retrait, de versement ou de virement.
+ * - un administrateur qui peut en plus de l’utilisateur, créer un ou plusieurs clients et plusieurs comptes pour celui-ci.
+ * De plus, elle permet de gérer 2 types de comptes, un compte courant avec un découvert autorisé et un compte épargne avec un taux d'intérêt.
+ * @author ChevinA,ArenasA, GuyauN, DeAlbuquerqueD.
+ * @version 1.0
+ */
 public class Main {
-
+	private static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
-		
-		AccountJobsImpl job = new AccountJobsImpl();
-		
-		Customer customer1 = new Customer("johndavid@gmail.com", "David", "John");
-
-		Account savAcc1 = new SavingAccount(5.5, customer1);
-		
-		Account curAcc1 = new CurrentAccount(500, customer1);
-		
-		
-		
-		job.deposit(500, savAcc1);
-		
-		System.out.println(savAcc1);
-		
-		job.transfer(250, savAcc1, curAcc1);
-		
-		System.out.println(savAcc1);
-		System.out.println(curAcc1);
-		
-		job.transfer(250, savAcc1, savAcc1);
-		
-		System.out.println(job.displayAllBankAccounts());
-		
-	//	System.out.println(job.displayTotalBalance(customer1));
-		//
-//		System.out.println(curAcc1);
-//		job.withdraw(450, curAcc1);
-//		System.out.println(curAcc1);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		Scanner scan = new Scanner(System.in);
-//
-//		System.out.println("Entrez votre mot de passe client (ou entrez \"admin\" si vous êtes Admin) :");
-//
-//		String password = scan.next();
-//
-//		//on imagine une vérification du mot de passe
-//		
-////		Customer currentCustomer = map.get()
-//
-//		AccountJobsImpl job = new AccountJobsImpl();
-//
-//		System.out.println("Bonjour Jean Paul, vous êtes bien connecté.");
-//		System.out.println("Que souhaitez vous faire ?");
-//
-//		System.out.println("1 - Consulter le solde d'un de mes comptes");
-//		System.out.println("2 - Déposer de l'argent sur un de mes comptes");
-//		System.out.println("3 - Retirer de l'argent d'un des comptes");
-//		System.out.println("4 - transférer de l'argent");
-//		
-//		
-//
-//		switch (scan.nextInt()) {
-//		case 1:
-//			System.out.println("Sur quel compte souhaitez-vous effectuer un retrait ?");
-//
-//			System.out.println("1 - Compte courant");
-//			System.out.println("2 - Compte épargne");
-//			//job.consult()
-//			break;
-//
-//		case 2:
-//			System.out.println("Pas encore implémenté");
-//			break;
-//
-//		case 3:
-//			System.out.println("Sur quel compte souhaitez-vous effectuer un retrait ?");
-//
-//			System.out.println("1 - Compte courant");
-//			System.out.println("2 - Compte épargne");
-//
-//			//job.withdraw(amount, date, account)
-//			break;
-//
-//		case 4:
-//			System.out.println("Pas encore implémenté");
-//			break;
-//
-//		default:
-//			break;
-//		}
-//
-//
-//		System.out.println("Sur quel compte ?");
-//		System.out.println("1 - Compte courant");
-//		System.out.println("2 - Compte épargne");
-//
-//		//1
-//
-//		System.out.println("Quel montant ?");
-//
-//		//200
-//
-//		//job.withdraw("compte courant", "200");
-
-
+		// TODO Auto-generated method stub		
+		appCodeQuantumBank();
+		scan.close();
 	}
-
+/**Méthode proposant le menu principal de l'application. */
+	public static void appCodeQuantumBank() {
+		int choice = 0;		
+		System.out.println("Bienvenue dans l'application de la banque CodeQuantum");
+		System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :\n");
+		
+		while(choice != 3) {
+			System.out.println("**********************************************************************");
+			System.out.println("1 : Êtes-vous client");
+			System.out.println("2 : Êtes-vous administrateur");
+			System.out.println("3 : Quitter l'application");
+			System.out.println("**********************************************************************");
+			
+			while(!scan.hasNextInt())	scan.next();
+			choice = scan.nextInt();			
+			switch(choice) {
+				case 1 : menuCustomer();
+						 break;
+				
+				case 2 : menuAdmin();
+						 break;
+				
+				case 3 : System.out.println("Nous vous remercions de votre visite, à bientot.");
+						 break;
+				
+				default : System.out.println("Nous n'avons pas compris votre choix");
+			}			
+		}			
+	}
+/** Méthode proposant le menu secondaire de l'application pour les clients de la banque. */
+	public static void menuCustomer() {
+		int choice = 0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Vous êtes client de notre Banque");
+		System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :\n");
+		
+		while(choice != 5) {
+			System.out.println("**********************************************************************");
+			System.out.println("1 : Consulter vos comptes");
+			System.out.println("2 : Faire un virement");
+			System.out.println("3 : Retirer de l'argent");
+			System.out.println("4 : Déposer de l'argent");
+			System.out.println("5 : Revenir au menu principal");
+			System.out.println("**********************************************************************");
+			
+			while(!scan.hasNextInt())	scan.next();
+			choice = scan.nextInt();			
+			switch(choice) {
+				case 1 : //consulter
+						 break;
+				
+				case 2 : //transfert d'argent
+						 break;
+				case 3 : //retirer de l'argent
+						break;
+				case 4 : //Déposer de l'argent
+						break;				
+				case 5 : System.out.println("D'accord");
+						 break;				
+				default : System.out.println("Nous n'avons pas compris votre choix.");
+			}			
+		}			
+	}
+	/** Méthode proposant un menu secondaire de l'application pour les administrateurs de la banque. */
+	public static void menuAdmin() {
+		int choice = 0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Vous êtes administrateur de notre Banque");
+		System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :\n");
+		
+		while(choice != 3) {
+			System.out.println("**********************************************************************");
+			System.out.println("1 : Créer un nouveau client");
+			System.out.println("2 : Créer un compte pour un client existant");
+			System.out.println("3 : Revenir au menu principal");
+			System.out.println("**********************************************************************");
+			
+			while(!scan.hasNextInt())	scan.next();
+			choice = scan.nextInt();			
+			switch(choice) {
+				case 1 : //Créer un nouveau client
+						 break;
+				
+				case 2 : //Créer un compte pour un client existant
+						 break;			
+				case 3 : System.out.println("D'accord");
+						 break;				
+				default : System.out.println("Nous n'avons pas compris votre choix.");
+			}			
+		}			
+	}
 }
