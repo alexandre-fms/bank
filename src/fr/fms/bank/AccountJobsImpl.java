@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * @author ArenasA De-albuquerqueD ChevinA GuyauN
+ *
+ * Implémentation de l'interface AccountJobs
+ * Elle contient toutes les methodes qui seront disponibles dans notre application.
+ */
 public class AccountJobsImpl implements AccountJobs {
 	
 	private Map<Integer, Operation> operationHistory;
 	private Map<Integer, Account> accounts;
 	private Map<Integer,Customer> customers;
 
-
+/**
+ * Constructeur de AccountJobsImpl
+ */
 	public AccountJobsImpl() {
 		accounts = new HashMap<Integer,Account>();		
 		customers = new HashMap<Integer,Customer>();
@@ -18,12 +27,11 @@ public class AccountJobsImpl implements AccountJobs {
 		customers.put(customer.getId(), customer);
 	}
 	
-	
-	public void addCustomer(String email,String lastName,String firstName, boolean isAdmin) {
-		Customer customer = new Customer(email, lastName, firstName, isAdmin); 	
-		customers.put(customer.getId(), customer);
-	}
-
+	/**
+	 * Permet de créer un compte dans la banque.
+	 * @param account
+	 */
+	@Override
 	public void addAccount(Account account) {
 		accounts.put(account.getID(), account);	
 		Customer customer = account.getCustomer(); 	
@@ -31,7 +39,13 @@ public class AccountJobsImpl implements AccountJobs {
 		addAccountToCustomer(customer, account);
 	}
 
-	private void addAccountToCustomer(Customer customer, Account account) {
+	/**
+	 * Associe un compte à un client.
+	 * @param customer
+	 * @param account
+	 */
+	@Override
+	public void addAccountToCustomer(Customer customer, Account account) {
 		boolean exist = false;
 		for(Account acc : customer.getListAccounts()) {
 			if(acc.getID() == account.getID()) {
@@ -42,6 +56,24 @@ public class AccountJobsImpl implements AccountJobs {
 		if(exist == false)	customer.getListAccounts().add(account);
 	}
 
+	/**
+	 * Permet d'ajouter un nouveau client dans l'application.
+	 * @param email
+	 * @param lastName
+	 * @param firstName
+	 * @param isAdmin
+	 */
+	@Override
+	public void addCustomer(String email,String lastName,String firstName, boolean isAdmin) {
+		Customer customer = new Customer(email, lastName, firstName, isAdmin); 	
+		customers.put(customer.getId(), customer);
+	}
+
+	/**
+	 * 
+	 * @param id On doit lui fournir l'ID du compte à consulter.
+	 * @return Retourne le compte correspondant à l'ID.
+	 */
 	@Override
 	public Account consult(int id){
 		Account account = accounts.get(id);
@@ -49,6 +81,12 @@ public class AccountJobsImpl implements AccountJobs {
 		return account;
 	};
 
+	
+	/**
+	 * Permet de verser de l'argent.
+	 * @param amount La somme à verser
+	 * @param accountId L'id du compte sur lequel verser
+	 */
 	@Override
 	public void deposit(double amount, int accountId){
 
@@ -65,16 +103,31 @@ public class AccountJobsImpl implements AccountJobs {
 		account.getListOperations().add(dp);
 	};
 
+	/**
+	 * 
+	 * @return ArrayList<Account> Retourne un tableau dynamique contenant tous les comptes de la banque.
+	 */
 	@Override
 	public ArrayList<Account> listAccounts() {		
 		return new ArrayList<Account> (accounts.values());
 	};
 
+	/**
+	 * Retourne la liste des opérations d'un compte en particulier.
+	 * @param accountId
+	 * @return ArrayList<Operation>
+	 */
 	@Override
 	public ArrayList<Operation> listOperations(int accountId) {
 		return consult(accountId).getListOperations();
 	};
 
+	/**
+	 * Permet de virer de l'argent d'un compte à un autre.
+	 * @param amount La somme à virer
+	 * @param accountFromId Le compte d'où part le virement.
+	 * @param accountToId Le compte qsui reçoit le virement.
+	 */
 	@Override
 	public void transfer(double amount, int accountFromId, int accountToId){
 
@@ -97,6 +150,12 @@ public class AccountJobsImpl implements AccountJobs {
 		}
 
 	}
+	
+	/**
+	 * Permet de retirer de l'argent d'un compte
+	 * @param amount
+	 * @param accountId
+	 */
 	@Override
 	public void withdraw(double amount, int accountId) {
 		Account account = consult(accountId);
