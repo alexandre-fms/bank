@@ -13,17 +13,18 @@ public abstract class Operation {
 	private double amount;
 	private Date date;
 	private static int counter = 0;
+	private int accountID;
 /**
  * Constructeur de opération, le compteur du constructeur est incrémentée à chaque fois qu'une classe fille de opération sera instanciée,
  * il correspond à l'id de l'opération.
  * @param amount double 
  */
-	public Operation(double amount) {
+	public Operation(double amount, int accountID) {
 		counter++; 
 		setId(counter);
 		this.amount = amount;
 		this.date = new Date();
-		
+		this.accountID = accountID;
 	}
 /**
  * Méthode qui permet l'accés à l'attribut correspondant au compteur de l'opération.
@@ -73,7 +74,7 @@ public abstract class Operation {
  */
 	@Override
 	public String toString() {
-		return "[amount=" + amount +", "+"date=" + date +"]";
+		return "[transactionID=" + id + ", amount=" + amount +", date=" + date +", accountId=" + accountID +"]";
 	}
 	
 	

@@ -30,10 +30,12 @@ public class Customer {
  */
 	public Customer (String email,String lastName,String firstName, boolean isAdmin){
 		counter++;
+		this.id = counter;
 		setEmail(email);
 		setLastName(lastName);
 		setFirstName(firstName);
 		setIsAdmin(isAdmin);
+		listAccounts = new ArrayList<Account>();
 	}
 
 	/**

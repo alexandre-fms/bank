@@ -75,4 +75,10 @@ public interface AccountJobs {
 	 */
 	public void withdraw(double amount, int accountId);
 
+	/**
+	 * 
+	 * @return ArrayList<Customer> Retourne un tableau dynamique contenant tous les clients de la banque.
+	 */
+	ArrayList<Customer> listCustomers();
+
 }

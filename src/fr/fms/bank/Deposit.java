@@ -10,8 +10,8 @@ public class Deposit extends Operation{
 	 * Constructeur permettant de créer une opération de dépôt
 	 * @param amount	double Le montant à ajouter à un compte
 	 */
-	public Deposit(double amount) {
-		super(amount);
+	public Deposit(double amount, int accountID) {
+		super(amount, accountID);
 	}
 	/**
 	 * Méthode d'affichage
@@ -19,7 +19,7 @@ public class Deposit extends Operation{
 	 */
 	@Override
 	public String toString() {
-		return "Détail du dépôt " + super.toString();
+		return "Dépôt " + super.toString();
 	}
 	
 }

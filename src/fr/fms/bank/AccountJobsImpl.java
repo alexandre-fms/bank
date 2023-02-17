@@ -23,6 +23,7 @@ public class AccountJobsImpl implements AccountJobs {
 	public AccountJobsImpl() {
 		accounts = new HashMap<Integer,Account>();		
 		customers = new HashMap<Integer,Customer>();
+		operationHistory = new HashMap<Integer,Operation>();
 		Customer customer = new Customer("first@admin.com", "First", "Admin", true);
 		customers.put(customer.getId(), customer);
 	}
@@ -35,7 +36,10 @@ public class AccountJobsImpl implements AccountJobs {
 	public void addAccount(Account account) {
 		accounts.put(account.getID(), account);	
 		Customer customer = account.getCustomer(); 	
-		customers.put(customer.getId(), customer);
+		if (customers.get(account.getCustomer().getId()) == null) {
+			customers.put(customer.getId(), customer);
+		}
+			
 		addAccountToCustomer(customer, account);
 	}
 
@@ -53,7 +57,9 @@ public class AccountJobsImpl implements AccountJobs {
 				break;
 			}
 		}
-		if(exist == false)	customer.getListAccounts().add(account);
+		if(exist == false)	{
+			customer.getListAccounts().add(account);
+		}
 	}
 
 	/**
@@ -92,7 +98,7 @@ public class AccountJobsImpl implements AccountJobs {
 
 		Account account = consult(accountId);
 
-		Deposit dp = new Deposit(amount);
+		Deposit dp = new Deposit(amount , accountId);
 		operationHistory.put(dp.getId(), dp);
 
 		if (accounts.get(account.getID()) == null)
@@ -110,6 +116,15 @@ public class AccountJobsImpl implements AccountJobs {
 	@Override
 	public ArrayList<Account> listAccounts() {		
 		return new ArrayList<Account> (accounts.values());
+	};
+	
+	/**
+	 * 
+	 * @return ArrayList<Customer> Retourne un tableau dynamique contenant tous les clients de la banque.
+	 */
+	@Override
+	public ArrayList<Customer> listCustomers() {		
+		return new ArrayList<Customer> (customers.values());
 	};
 
 	/**
@@ -136,7 +151,7 @@ public class AccountJobsImpl implements AccountJobs {
 		} else {
 			Account accountFrom = consult(accountFromId);
 			Account accountTo = consult(accountToId);
-			Transfer tf = new Transfer(amount);
+			Transfer tf = new Transfer(amount, accountFromId);
 			operationHistory.put(tf.getId(), tf);
 
 			if (accounts.get(accountFrom.getID()) == null)
@@ -159,15 +174,17 @@ public class AccountJobsImpl implements AccountJobs {
 	@Override
 	public void withdraw(double amount, int accountId) {
 		Account account = consult(accountId);
-		Withdraw wd = new Withdraw(amount);
-		operationHistory.put(wd.getId(), wd);
+		Withdraw wd = new Withdraw(amount, accountId);
+		
 
 		if (accounts.get(account.getID()) == null)
 			accounts.put(account.getID(), account);
 
-		accounts.get(account.getID()).removeMoney(amount);
-
-		account.getListOperations().add(wd);
+		if (accounts.get(account.getID()).removeMoney(amount)) {
+			account.getListOperations().add(wd);
+			operationHistory.put(wd.getId(), wd);
+		}
+			
 	}
 
 

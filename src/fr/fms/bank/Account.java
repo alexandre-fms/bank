@@ -30,6 +30,7 @@ public abstract class Account {
 		setCurrentAmount(0);
 		this.date = new Date();
 		setCustomer(customer);
+		listOperations = new ArrayList<Operation>();
 	}
 	
 	/**
@@ -85,9 +86,7 @@ public abstract class Account {
 	 * @param amount
 	 * permet de retirer au montant actuel 
 	 */
-	public void removeMoney(double amount) {
-
-	}
+	public abstract boolean removeMoney(double amount);
 
 	/**
 	 * 

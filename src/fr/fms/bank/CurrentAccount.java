@@ -36,11 +36,16 @@ public class CurrentAccount extends Account {
 	/**
 	 * cette méthode sert à soustraire un montant au total du compte
 	 */
-	public void removeMoney(double amount) {
+	@Override
+	public boolean removeMoney(double amount) {
 		if ((super.getCurrentAmount() - amount) > -overdraft) {
 			super.setCurrentAmount(super.getCurrentAmount() - amount);
+			return true;
 		} 
-		else System.out.println("vous avez dépassé vos capacités de retrait !");
+		else {
+			System.out.println("vous avez dépassé vos capacités de retrait !");
+			return false;
+		}
 	}
 
 	/**

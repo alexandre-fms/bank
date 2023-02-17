@@ -48,11 +48,16 @@ public class SavingAccount extends Account {
 	/**
 	 * permet de retirer de l'argent a un compte en verifiant sa capacité de retrait;
 	 */
-	public void removeMoney(double amount) {
+	@Override
+	public boolean removeMoney(double amount) {
 		if ((super.getCurrentAmount() - amount) > 0) {					
 			super.setCurrentAmount(super.getCurrentAmount() - amount);
+			return true;
 		} 
-		else System.out.println("vous avez dépassé vos capacités de retrait !");
+		else {
+			System.out.println("vous avez dépassé vos capacités de retrait !");
+			return false;
+		}
 	}
 
 	/**
